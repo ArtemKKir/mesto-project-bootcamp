@@ -9,18 +9,3 @@
     overflow: hidden;
     max-width: 200px;
 }
-
-@media screen and (max-width: 1024px) {
-    .element__title {
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .element__title {
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .element__title {
-    }
-}

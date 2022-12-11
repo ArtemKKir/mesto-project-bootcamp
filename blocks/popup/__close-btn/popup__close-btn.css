@@ -1,4 +1,4 @@
-.form__close-btn {
+.popup__close-btn {
     align-self: center;
     width: 32px;
     height: 32px;
@@ -14,15 +14,14 @@
     right: -40px;
 }
 
-.form__close-btn:hover {
-    opacity: 0.5;
+.popup__close-btn:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 740px) {
-    .form__close-btn {
+    .popup__close-btn {
         width: 20px;
         height: 20px;
-        top: -40px;
         right: 0;
     }
 }

@@ -1,28 +1,7 @@
 .element__image {
-    max-width: 282px;
-    max-height: 282px;
+    width: 282px;
+    height: 282px;
     z-index: 2;
-    border-top-left-radius: 5%;
-    border-top-right-radius: 5%;
-}
-
-@media screen and (max-width: 1024px) {
-    .element__image {
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .element__image {
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .element__image {
-    }
-}
-
-
-@media screen and (max-width: 340px) {
-    .element__image {
-    }
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
