@@ -1,0 +1,10 @@
+.element__dlt-btn-can {
+    width: 15.44px;
+    height: 13.3px;
+    background-image: url(../../../images/dlt-btn.png);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 3;
+}

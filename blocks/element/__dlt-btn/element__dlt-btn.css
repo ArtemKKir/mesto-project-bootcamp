@@ -1,0 +1,20 @@
+.element__dlt-btn {
+    position: absolute;
+    height: 19px;
+    width: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.28px;
+    border: none;
+    cursor: pointer;
+    top: 20px;
+    right: 15px;
+    box-sizing: content-box;
+    z-index: 3;
+    background-color: transparent;
+}
+
+.element__dlt-btn:hover {
+    opacity: 0.6;
+}

@@ -1,0 +1,10 @@
+.element__dlt-btn-lid {    
+    width: 18px;
+    height: 4.42px;
+    background-image: url(../../../images/trash-button.png);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 3;
+}
