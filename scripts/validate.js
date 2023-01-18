@@ -28,7 +28,8 @@ const setEventListeners = (formElement, { inputSelector, submitButtonSelector, i
 
 
 const checkInputValidity = (formElement, inputElement, { inputErrorClass, errorClass }) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`)
+    const errorElement = formElement.querySelector(`.${inputElement.id}_error`)
+    console.log(errorElement)
 
     if (inputElement.validity.valid) {
         hideInputError(formElement, inputElement, errorElement, inputErrorClass, errorClass)
