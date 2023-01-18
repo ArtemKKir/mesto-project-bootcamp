@@ -27,85 +27,22 @@
                 </button>
             </section>
             <section class="elements">
-                <!--<article class="element">
-                    <button type="button" class="element__dlt-btn">
-                        <span class="element__dlt-btn-lid"></span>
-                        <span class="element__dlt-btn-can"></span>
-                    </button>
-                    <img class="element__image" src="./images/osetia.jpg" alt="Осетия">
-                    <div class="element__group">
-                        <h2 class="element__name">Осетия</h2>
-                        <button type="button" class="element__like-btn"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <button type="button" class="element__dlt-btn">
-                        <span class="element__dlt-btn-lid"></span>
-                        <span class="element__dlt-btn-can"></span>
-                    </button>
-                    <img class="element__image" src="./images/kamchatka.jpg" alt="Камчатка">
-                    <div class="element__group">
-                        <h2 class="element__name">Камчатка</h2>
-                        <button type="button" class="element__like-btn"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <button type="button" class="element__dlt-btn">
-                        <span class="element__dlt-btn-lid"></span>
-                        <span class="element__dlt-btn-can"></span>
-                    </button>
-                    <img class="element__image" src="./images/buryatia.jpg" alt="Бурятия">
-                    <div class="element__group">
-                        <h2 class="element__name">Бурятия</h2>
-                        <button type="button" class="element__like-btn"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <button type="button" class="element__dlt-btn">
-                        <span class="element__dlt-btn-lid"></span>
-                        <span class="element__dlt-btn-can"></span>
-                    </button>
-                    <img class="element__image" src="./images/teriberka.jpg" alt="Териберка">
-                    <div class="element__group">
-                        <h2 class="element__name">Териберка</h2>
-                        <button type="button" class="element__like-btn"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <button type="button" class="element__dlt-btn">
-                        <span class="element__dlt-btn-lid"></span>
-                        <span class="element__dlt-btn-can"></span>
-                    </button>
-                    <img class="element__image" src="./images/plato-putorana.jpg" alt="Плато-путорана">
-                    <div class="element__group">
-                        <h2 class="element__name">Плато-путорана</h2>
-                        <button type="button" class="element__like-btn"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <button type="button" class="element__dlt-btn">
-                        <span class="element__dlt-btn-lid"></span>
-                        <span class="element__dlt-btn-can"></span>
-                    </button>
-                    <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкессия">
-                    <div class="element__group">
-                        <h2 class="element__name">Карачаево-Черкессия</h2>
-                        <button type="button" class="element__like-btn"></button>
-                    </div>
-                </article>-->
             </section>
         </main>
         <footer class="footer">
             <a class="footer__copyright">&copy; 2022 Артем Киракосян</a>
         </footer>
     </div>
-    <div class="popup">
+    <div class="popup profile-popup">
         <div class="popup__container">
-            <form class="form" name="profile-edit-form">
+            <form class="form" name="profile-edit-form" novalidate>
                 <h3 class="form__title">Редактировать профиль</h3>
-                <input type="text" id="name" class="form__item name-input" name="name" value="" required>
-                <input type="text" id="job" class="form__item job-input" name="job" value=""
-                    required>
+                <input type="text" id="name" class="form__item name-input" name="name" minlength="2" maxlength="40"
+                    required placeholder="Имя">
+                    <span id="name-error" class="form__error"></span>
+                <input type="text" id="job" class="form__item job-input" name="job" minlength="2" maxlength="200"
+                    required placeholder="Профессия">
+                    <span id="job-error" class="form__error"></span>
                 <button type="submit" class="form__submit-btn">Сохранить</button>
             </form>
             <button type="button" class="popup__close-btn"></button>
@@ -113,21 +50,24 @@
     </div>
     <div class="popup popup_place">
         <div class="popup__container">
-            <form class="form form_place" name="place-add-form">
+            <form class="form form_place" name="place-add-form" novalidate>
                 <h3 class="form__title">Новое место</h3>
-                <input type="text" id="name" class="form__item input-place" placeholder="Название" name="name" required>
-                <input type="url" id="job" class="form__item input-url" placeholder="Ссылка на картинку" name="job"
+                <input type="text" id="name" name="name" class="form__item input-place" placeholder="Название" name="name"
+                    minlength="2" maxlength="30" required>
+                    <span id="name-error" class="form__error"></span>
+                <input type="url" id="job" name="place-link" class="form__item input-url" placeholder="Ссылка на картинку" name="job"
                     required>
+                    <span id="place-link-error" class="form__error"></span>
                 <button type="submit" class="form__submit-btn form__submit-btn_place">Создать</button>
             </form>
-            <button type="button" class="popup_place__close-btn"></button>
+            <button type="button" class="popup__close-btn popup_place__close-btn"></button>
         </div>
     </div>
     <div class="popup popup_picture">
         <div class="popup__picture-container">
             <img class="popup__image" src="" alt="">
-            <button type="button" class="popup_picture__close-btn"></button>
-            <p class="popup__caption">safaf</p>
+            <button type="button" class="popup__close-btn popup_picture__close-btn"></button>
+            <p class="popup__caption"></p>
         </div>
     </div>
     <template id="element-template">
@@ -136,15 +76,16 @@
                 <span class="element__dlt-btn-lid"></span>
                 <span class="element__dlt-btn-can"></span>
             </button>
-          <img class="element__image" alt="avatar">
-          <div class="element__group">
-          <h2 class="element__name"></h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
+            <img class="element__image" alt="avatar">
+            <div class="element__group">
+                <h2 class="element__name"></h2>
+                <button type="button" class="element__like-btn"></button>
+            </div>
         </article>
-      </template>
+    </template>
     <script src="./scripts/data.js"></script>
-    <script src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/validate.js"></script>
 </body>
 
 </html>
