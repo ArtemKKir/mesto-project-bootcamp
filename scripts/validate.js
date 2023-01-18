@@ -9,7 +9,6 @@ export const enableValidation = ({ formSelector, ...rest }) => {
 
 const setEventListeners = (formElement, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-    console.log(inputList);
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
     formElement.addEventListener('reset', () => {
@@ -29,7 +28,6 @@ const setEventListeners = (formElement, { inputSelector, submitButtonSelector, i
 
 const checkInputValidity = (formElement, inputElement, { inputErrorClass, errorClass }) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}_error`)
-    console.log(errorElement)
 
     if (inputElement.validity.valid) {
         hideInputError(formElement, inputElement, errorElement, inputErrorClass, errorClass)
