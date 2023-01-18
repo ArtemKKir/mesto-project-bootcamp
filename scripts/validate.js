@@ -9,6 +9,7 @@ export const enableValidation = ({ formSelector, ...rest }) => {
 
 const setEventListeners = (formElement, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    console.log(inputList);
     const buttonElement = formElement.querySelector(submitButtonSelector);
 
     formElement.addEventListener('reset', () => {
@@ -19,11 +20,10 @@ const setEventListeners = (formElement, { inputSelector, submitButtonSelector, i
 
     inputList.forEach(inputElement => {
         inputElement.addEventListener('input', () => {
-            checkInputValidity(inputElement);
+            checkInputValidity(formElement, inputElement, rest);
             toggleButtonState(inputList, buttonElement, inactiveButtonClass);
         })
     })
-    toggleButtonState(inputList, buttonElement, inactiveButtonClass)
 }
 
 
@@ -73,7 +73,6 @@ const enableButton = (buttonElement, inactiveButtonClass) => {
 
 
 const disableButton = (buttonElement, inactiveButtonClass) => {
-
     buttonElement.classList.add(inactiveButtonClass)
     buttonElement.disabled = true
 }

@@ -32,6 +32,7 @@ function closePopup() {
     popup.classList.remove("popup_opened");
     placeForm.classList.remove("popup_opened");
     document.querySelector('.popup_picture').classList.remove('popup_opened');
+    createPlaceButton.reset();
 }
 
 add.addEventListener('click', function () {
