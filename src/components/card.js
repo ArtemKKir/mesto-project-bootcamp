@@ -1,5 +1,6 @@
 import { template, elements, imagePopup, imagePopupImage, imagePopupCaption } from "../utils/constants.js";
 import { initialCards } from "./data.js";
+import { closePopup, openPopup } from "../utils/utils.js";
 /*const template = document.querySelector('#element-template').content.querySelector('.element');
 const elements = document.querySelector('.elements');
 const imagePopup = document.querySelector('.popup_picture');
@@ -21,11 +22,13 @@ const createCard = (data) => {
         imagePopupImage.src = data.link;
         imagePopupImage.alt = `Изображение ${data.name}`;
         imagePopupCaption.textContent = data.name;
-        document.querySelector('.popup_picture').classList.add('popup_opened');
+        openPopup(imagePopup);
+        // document.querySelector('.popup_picture').classList.add('popup_opened');
     });
     
     closePicturePopupButton.addEventListener('click', function () {
-        document.querySelector('.popup_picture').classList.remove('popup_opened');
+        closePopup(imagePopup);
+        // document.querySelector('.popup_picture').classList.remove('popup_opened');
     });
 
     console.log(card);
