@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
 </head>
 
@@ -15,7 +14,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__image" src="./images/avatar.jpg" alt="Аватарка">
+                <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
                 <div class="profile__info">
                     <div class="profile__heading">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -37,12 +36,12 @@
         <div class="popup__container">
             <form class="form" name="profile-edit-form" novalidate>
                 <h3 class="form__title">Редактировать профиль</h3>
-                <input type="text" id="form__item" class="form__item name-input" name="name" minlength="2" maxlength="40"
-                    required placeholder="Имя">
-                    <span id="name-error" class="form__item_error"></span>
+                <input type="text" id="form__item" class="form__item name-input" name="name" minlength="2"
+                    maxlength="40" required placeholder="Имя">
+                <span id="name-error" class="form__item_error"></span>
                 <input type="text" id="form__item" class="form__item job-input" name="job" minlength="2" maxlength="200"
                     required placeholder="Профессия">
-                    <span id="job-error" class="form__item_error"></span>
+                <span id="job-error" class="form__item_error"></span>
                 <button type="submit" class="form__submit-btn">Сохранить</button>
             </form>
             <button type="button" class="popup__close-btn"></button>
@@ -52,13 +51,14 @@
         <div class="popup__container">
             <form class="form form_place" name="place-add-form" novalidate>
                 <h3 class="form__title">Новое место</h3>
-                <input type="text" id="form__item" name="name" class="form__item input-place" placeholder="Название" name="name"
-                    minlength="2" maxlength="30" required>
-                    <span id="name-error" class="form__item_error"></span>
-                <input type="url" id="form__item" name="place-link" class="form__item input-url" placeholder="Ссылка на картинку" name="job"
-                    required>
-                    <span id="place-link-error" class="form__item_error"></span>
-                <button type="submit" class="form__submit-btn form__submit-btn_disabled form__submit-btn_place" disabled>Создать</button>
+                <input type="text" id="form__item" name="name" class="form__item input-place" placeholder="Название"
+                    name="name" minlength="2" maxlength="30" required>
+                <span id="name-error" class="form__item_error"></span>
+                <input type="url" id="form__item" name="place-link" class="form__item input-url"
+                    placeholder="Ссылка на картинку" name="job" required>
+                <span id="place-link-error" class="form__item_error"></span>
+                <button type="submit" class="form__submit-btn form__submit-btn_disabled form__submit-btn_place"
+                    disabled>Создать</button>
             </form>
             <button type="button" class="popup__close-btn popup_place__close-btn"></button>
         </div>
@@ -83,9 +83,6 @@
             </div>
         </article>
     </template>
-    <script src="./scripts/data.js"></script>
-    <script type="module" src="./scripts/script.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,8 @@
+.profile__image {
+    width: 120px;
+    height: 120px;
+    align-self: stretch;
+    object-fit: contain;
+    border-radius: 50%;
+    align-self: center;
+}
