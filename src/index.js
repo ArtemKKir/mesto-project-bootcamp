@@ -16,9 +16,7 @@ function renderLoading(isLoading) {
     if(isLoading) {
         buttonLoading.textContent = 'Сохранение...';
         // error.textContent = '';
-    } else {
-        buttonLoading.textContent = 'Сохранить...';
-    }
+    } 
 }
 buttonOpenAvePopup.addEventListener('click', function() {
     openPopup(avePopup);

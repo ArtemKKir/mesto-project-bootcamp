@@ -1,5 +1,5 @@
 import { config, template, imagePopup, imagePopupImage, imagePopupCaption, elements, newPlaceName, newPlaceUrl, nameInput, jobInput, name, job, aveImage, aveFormInput } from "../utils/constants";
-import { openPopup, renderLoading } from "../utils/utils.js";
+import { openPopup, renderLoading, handleDeleteCard } from "../utils/utils.js";
 import { handleFormSubmit, avaChange } from "../index.js";
 
 export const getResponse = (res) => {
@@ -24,9 +24,7 @@ const createCard = (res) => {
         }
     }
     myCard();
-    card.querySelector('.element__dlt-btn').addEventListener('click', function(e) {
-        e.target.closest('.element').deleteCard(cardId);
-    });
+    card.querySelector('.element__dlt-btn').addEventListener('click', handleDeleteCard);
     card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like-btn_active');
     });
@@ -42,7 +40,6 @@ const createCard = (res) => {
 
     console.log(card);
     console.log(cardId);
-    console.log(template.id.value);
     return card;
 }
 
@@ -123,17 +120,13 @@ export const newCard = (name, link) => {
     })
 }
 
-const handleDeleteCard = (evt) => {
-    console.log(evt);
-    evt.target.closest('.element').remove();
-  }
 
-export const deleteCard = (cardId) => {
-    return fetch(`${config.baseUrl}/cards/${cardId}`, {
+export const deleteCard = (_id) => {
+    return fetch(`${config.baseUrl}/cards/${_id}`, {
         method: 'DELETE',
         headers: config.headers,
         body: JSON.stringify({
-            _id: cardId.value
+            _id: ''
         })
     })
     .then(getResponse)
@@ -151,4 +144,4 @@ export const cardLike = () => {
         })
     })
 }
-deleteCard('63d11420b0890863c7f347bb');
+deleteCard('63d12d422d0f9c63a323d18b');

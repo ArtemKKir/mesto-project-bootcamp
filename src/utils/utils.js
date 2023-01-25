@@ -13,9 +13,9 @@ export function closePopup(popup) {
     body.removeEventListener('keydown', esc);
 }
 
-// export const handleDeleteCard = (event) => {
-//   event.target.closest('.element').remove();
-// }
+export const handleDeleteCard = (event) => {
+  event.target.closest('.element').deleteCard();
+}
 
 export function renderLoading(isLoading) {
   if(isLoading) {
