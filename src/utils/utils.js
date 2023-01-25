@@ -1,7 +1,6 @@
 import { popup, body } from "./constants.js";
 import { esc } from "../index.js";
 import { buttonLoading } from "./constants.js";
-import { deleteCard } from "../components/api.js";
 
 export function openPopup(popup) {
     popup.classList.add("popup_opened");
@@ -13,16 +12,12 @@ export function closePopup(popup) {
     body.removeEventListener('keydown', esc);
 }
 
-export const handleDeleteCard = (event) => {
-  event.target.closest('.element').deleteCard();
-}
-
 export function renderLoading(isLoading) {
   if(isLoading) {
       buttonLoading.textContent = 'Сохранение...';
-      // error.textContent = '';
-  } else {
-      buttonLoading.textContent = 'Сохранить...';
+  //     error.textContent = '';
+  // } else {
+  //     buttonLoading.textContent = 'Сохранить...';
   }
 }
 

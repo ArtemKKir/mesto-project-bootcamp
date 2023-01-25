@@ -32,11 +32,11 @@ const jobInput = form.querySelector('.job-input');
 const name = document.querySelector('.profile__title');
 const job = document.querySelector('.profile__subtitle');
 
-export { avePopupClose, openPopupButtonElement, closePopupButton, placePopupOpen, placePopupClose, body, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job};
+export { avePopupClose, openPopupButtonElement, closePopupButton, placePopupOpen, placePopupClose, body, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job };
 
 export const config = {
-    baseUrl: 'https://nomoreparties.co/v1/wbf-cohort-4',
-    headers: {
+  baseUrl: 'https://nomoreparties.co/v1/wbf-cohort-4',
+  headers: {
     'Authorization': 'e14450da-01ef-426a-8180-a1ba601a97ba',
     'Content-Type': 'application/json'
   }
