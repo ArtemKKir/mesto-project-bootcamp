@@ -1,8 +1,15 @@
 .profile__image {
-    width: 120px;
-    height: 120px;
-    align-self: stretch;
-    object-fit: contain;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
     border-radius: 50%;
-    align-self: center;
+    height: 100%;
+    width: 100%;
 }
+
+/*.profile__image:hover .profile__image_edit {
+    opacity: 1;
+}
+.profile__image:hover .profile__image {
+    opacity: .5;
+}*/

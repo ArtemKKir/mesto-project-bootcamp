@@ -1,4 +1,5 @@
 .element__like-btn {
+    display: block;
     align-self: center;
     width: 22px;
     height: 19px;

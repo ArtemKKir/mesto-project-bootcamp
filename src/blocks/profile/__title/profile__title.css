@@ -1,4 +1,5 @@
 .profile__title {
+    max-width: 400px;
     margin: 0;
     text-align: center;
     font-weight: 500;

@@ -1,0 +1,13 @@
+.profile__pic {
+    position: relative;
+    display: flex;
+    width: 120px;
+    height: 120px;
+    align-self: center;
+}
+.profile__pic:hover .profile__image_edit {
+    opacity: 1;
+}
+.profile__pic:hover .profile__image {
+    opacity: .5;
+}

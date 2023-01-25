@@ -1,13 +1,9 @@
-import { template, elements, imagePopup, imagePopupImage, imagePopupCaption } from "../utils/constants.js";
+/*import { template, imagePopup, imagePopupImage, imagePopupCaption } from "../utils/constants.js";
 import { initialCards } from "./data.js";
-import { closePopup, openPopup } from "../utils/utils.js";
-/*const template = document.querySelector('#element-template').content.querySelector('.element');
-const elements = document.querySelector('.elements');
-const imagePopup = document.querySelector('.popup_picture');
-const imagePopupImage = imagePopup.querySelector('.popup__image');
-const imagePopupCaption = imagePopup.querySelector('.popup__caption');*/
+import { openPopup } from "../utils/utils.js";
+import { getInitialCards, getResponse } from "./api.js";
 
-const createCard = (data) => {
+(export const createCard = (data) => {
     const card = template.cloneNode(true);
     card.querySelector('.element__name').textContent = data.name;
     card.querySelector('.element__dlt-btn').addEventListener('click', handleDeleteCard);
@@ -15,7 +11,6 @@ const createCard = (data) => {
         evt.target.classList.toggle('element__like-btn_active');
     });
     const image = card.querySelector('.element__image');
-    const closePicturePopupButton = document.querySelector('.popup_picture__close-btn');
     image.src = data.link;
     image.alt = `Изображение ${data.name}`;
     image.addEventListener('click', () => {
@@ -23,12 +18,6 @@ const createCard = (data) => {
         imagePopupImage.alt = `Изображение ${data.name}`;
         imagePopupCaption.textContent = data.name;
         openPopup(imagePopup);
-        // document.querySelector('.popup_picture').classList.add('popup_opened');
-    });
-    
-    closePicturePopupButton.addEventListener('click', function () {
-        closePopup(imagePopup);
-        // document.querySelector('.popup_picture').classList.remove('popup_opened');
     });
 
     console.log(card);
@@ -36,7 +25,7 @@ const createCard = (data) => {
     return card;
 }
 
-const handleDeleteCard = (event) => {
+export const handleDeleteCard = (event) => {
     event.target.closest('.element').remove();
 }
 
@@ -49,3 +38,4 @@ for (let i = initialCards.length - 1; i >= 0; i--) {
 }
 
 export {renderCard}
+*/
