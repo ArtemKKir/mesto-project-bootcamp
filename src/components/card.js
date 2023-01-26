@@ -34,15 +34,12 @@ export const createCard = (res) => {
     //     if liker.
     // })
 
-// console.log(liker.forEach(function(object) {
-//     object + '!!!!';
-// }));
+liker.forEach(function(item) {
+    if(item._id === userId.id) {
+        likeButton.classList.add('element__like-btn_active');
+    };
+});
 
-    for (let i = liker.length - 1; i >= 0; i--) {
-        if (liker.some !== userId.id) {
-            likeButton.classList.add('element__like-btn_active');
-        }
-    }
     card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
         if (evt.target.classList.contains('element__like-btn_active')) {
             cardLikeDelete(cardId)
@@ -71,7 +68,10 @@ export const createCard = (res) => {
         imagePopupCaption.textContent = res.name;
         openPopup(imagePopup);
     });
-    console.log(userId);
+console.log(userId.id);
+console.log(liker.forEach(function(item) {
+    console.log(item._id)
+}))
     console.log(liker.length);
     return card;
 }
