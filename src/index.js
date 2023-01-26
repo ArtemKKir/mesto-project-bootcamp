@@ -1,9 +1,8 @@
 import './pages/index.css';
 import { enableValidation } from './components/validate.js';
 import { openPopup, closePopup } from './utils/utils.js';
-import { renderCard } from './components/card.js';
-import { buttonLoading, avePopup, aveFormInput, aveImage, avePopupClose, aveForm, buttonOpenAvePopup, openPopupButtonElement, buttonClosePopupImage, closePopupButton, placePopupOpen, placeForm, placePopupClose, body, cardForm,newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job, profilePopup, imagePopup } from './utils/constants.js'
-import { getInitialCards, getUser, newCard, getResponse, editUser, avatarChange } from './components/api.js';
+import { buttonLoading, avePopup, aveFormInput, aveImage, avePopupClose, aveForm, buttonOpenAvePopup, openPopupButtonElement, buttonClosePopupImage, closePopupButton, placePopupOpen, placeForm, placePopupClose, body, cardForm, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job, profilePopup, imagePopup } from './utils/constants.js'
+import { getInitialCards, getUser, newCard, editUser, avatarChange } from './components/api.js';
 import { initialCards } from './components/data.js';
 
 getUser();
@@ -13,17 +12,17 @@ const renderProfile = () => {
 }
 
 function renderLoading(isLoading) {
-    if(isLoading) {
+    if (isLoading) {
         buttonLoading.textContent = 'Сохранение...';
         // error.textContent = '';
-    } 
+    }
 }
-buttonOpenAvePopup.addEventListener('click', function() {
+buttonOpenAvePopup.addEventListener('click', function () {
     openPopup(avePopup);
     aveForm.reset();
 })
 
-avePopupClose.addEventListener('click', function() {
+avePopupClose.addEventListener('click', function () {
     closePopup(avePopup);
 })
 
@@ -33,7 +32,7 @@ export const avaChange = (evt) => {
     closePopup(avePopup);
 }
 
-aveForm.addEventListener('submit', function(e) {
+aveForm.addEventListener('submit', function (e) {
     e.preventDefault();
     avatarChange();
 });
@@ -51,7 +50,7 @@ buttonClosePopupImage.addEventListener('click', function () {
     closePopup(imagePopup);
 });
 
-cardForm.addEventListener('submit', function(e) {
+cardForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const name = newPlaceName.value;
     const link = newPlaceUrl.value;
@@ -82,7 +81,7 @@ export const handleFormSubmit = () => {
     closePopup(profilePopup);
 }*/
 
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', function (e) {
     e.preventDefault;
     editUser();
 });
@@ -108,4 +107,4 @@ enableValidation({
     errorClass: 'form__error'
 });
 
-export {esc}
+export { esc }

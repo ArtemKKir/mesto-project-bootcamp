@@ -1,7 +1,8 @@
-import { config, template, imagePopup, imagePopupImage, imagePopupCaption, elements, newPlaceName, newPlaceUrl, nameInput, jobInput, name, job, aveImage, aveFormInput } from "../utils/constants";
+import { config, userId, template, imagePopup, imagePopupImage, imagePopupCaption, elements, newPlaceName, newPlaceUrl, nameInput, jobInput, name, job, aveImage, aveFormInput } from "../utils/constants";
 import { openPopup, renderLoading } from "../utils/utils.js";
 import { handleFormSubmit, avaChange } from "../index.js";
 
+let someP = '';
 
 export const getResponse = (res) => {
     if (res.ok) {
@@ -10,21 +11,18 @@ export const getResponse = (res) => {
     return Promise.reject(`Ошибка ${res.status}`);
 };
 
-// const buttonElementDelete = document.querySelector('.element__dlt-btn');
-
-// createCard обрабатывает входящий от сервера массив карточек
-
 const createCard = (res) => {
     const card = template.cloneNode(true);
     card.querySelector('.element__name').textContent = res.name;
-    card.querySelector('.element__like_count').textContent = res.likes.length;
+    // card.querySelector('.element__like_count').textContent = res.likes.length;
+    const renderLikes = () => card.querySelector('.element__like_count').textContent = res.likes.length;
+    renderLikes();
     const cardId = res._id;
     const ownerId = res.owner._id;
     const liker = res.likes;
     const likeButton = card.querySelector('.element__like-btn');
-    // 1 в функции ниже myCard желательно избавится от хардкода, для этого нужно выцепить _id юзера наверное из функции getUser(она получает инфу о юзере от сервера) и закинуть в переменную допустим userId
     function myCard() {
-        if (ownerId !== 'c09f2edd2592d72466e4203c') {
+        if (ownerId !== userId.id) {
             card.querySelector('.element__dlt-btn').classList.add('element__dlt-btn_hidden');
         }
     }
@@ -33,20 +31,40 @@ const createCard = (res) => {
         deleteCard(cardId)
             .then(() => card.remove())
     });
-    
+
     for (let i = liker.length - 1; i >= 0; i--) {
-        if (liker[i] !== 'c09f2edd2592d72466e4203c') {
+        if (liker[i] !== userId.id) {
             likeButton.classList.add('element__like-btn_active');
         }
     }
-    //    2 дальше нужно подправить срабатывание слушателя нажатия лайка, запросы 'cardLike' 'cardLikeDelete' прописаны внизу команду на сервер они отправляют но результат не отображается в верстке
+    //    добавить событию слушателя лайка отображение изменения количества лайков
 
     card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like-btn_active');
-        cardLike(cardId)
-    });
+        if (evt.target.classList.contains('element__like-btn_active')) {
+            evt.target.classList.remove('element__like-btn_active');
+            cardLikeDelete(cardId);
+
+            
+            // getLikes(cardId);
+
+            // .then((res) => {                
+            //     console.log(res.likes.length)
+            // })
+        } else {
+            if (!evt.target.classList.add('element__like-btn_active')) {                
+                cardLike(cardId);
 
 
+                // getLikes(cardId);
+
+                // .then((res) => {
+                //     console.log(res.likes.length)
+                // })
+
+            }
+        }
+    }
+    );
 
     const image = card.querySelector('.element__image');
     image.src = res.link;
@@ -57,8 +75,6 @@ const createCard = (res) => {
         imagePopupCaption.textContent = res.name;
         openPopup(imagePopup);
     });
-
-    console.log(card);
     console.log(cardId);
     console.log(liker.length);
     return card;
@@ -78,6 +94,9 @@ export const getInitialCards = () => {
                 renderCard(res[i]);
             }
         })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 export const getUser = () => {
@@ -89,10 +108,15 @@ export const getUser = () => {
             name.textContent = res.name;
             job.textContent = res.about;
             aveImage.src = res.avatar;
+            userId.id = res._id;
         })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 export const editUser = (name, job) => {
+    renderLoading(true);
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'PATCH',
         headers: config.headers,
@@ -105,9 +129,16 @@ export const editUser = (name, job) => {
         .then((res) => {
             handleFormSubmit(res);
         })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally((res) => {
+            renderLoading(false);
+        })
 };
 
 export const avatarChange = (avatar) => {
+    renderLoading(true);
     return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: config.headers,
@@ -120,6 +151,12 @@ export const avatarChange = (avatar) => {
         })
         .then((res) => {
             avaChange(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally((res) => {
+            renderLoading(false);
         })
 };
 export const newCard = (name, link) => {
@@ -136,6 +173,9 @@ export const newCard = (name, link) => {
         .then((res) => {
             renderCard(res);
         })
+        .catch((err) => {
+            console.log(err);
+        })
         .finally((res) => {
             renderLoading(false);
         })
@@ -151,6 +191,9 @@ export const deleteCard = (_id) => {
         })
     })
         .then(getResponse)
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 export const cardLike = (_id) => {
@@ -163,8 +206,12 @@ export const cardLike = (_id) => {
     })
         .then(getResponse)
         .then((res) => {
-            console.log(res.likes);
+            someP = res.likes.length //тут получаем обновленное количество лайков
+            console.log(someP)
         })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 export const cardLikeDelete = (_id) => {
@@ -177,6 +224,23 @@ export const cardLikeDelete = (_id) => {
     })
         .then(getResponse)
         .then((res) => {
-            console.log(res.likes);
+            console.log(res.likes.length) //тут получаем обновленное количество лайков
         })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+export const getLikes = (_id) => {    //а может тут его надо получать
+    return fetch(`${config.baseUrl}/cards/${_id}`, {
+        headers: config.headers,
+    })
+        .then(getResponse)
+        .then((res) => {
+            someP = res.likes.length
+            console.log(someP)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }

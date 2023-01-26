@@ -1,5 +1,6 @@
 export const template = document.querySelector('#element-template').content.querySelector('.element');
 export const elements = document.querySelector('.elements');
+export const userId = document.querySelector('.profile__info');
 export const imagePopup = document.querySelector('.popup_picture');
 export const imagePopupImage = imagePopup.querySelector('.popup__image');
 export const imagePopupCaption = imagePopup.querySelector('.popup__caption');
