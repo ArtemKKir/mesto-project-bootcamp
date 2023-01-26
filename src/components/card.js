@@ -30,10 +30,6 @@ export const createCard = (res) => {
             });
     });
 
-    // liker.forEach(function() {
-    //     if liker.
-    // })
-
 liker.forEach(function(item) {
     if(item._id === userId.id) {
         likeButton.classList.add('element__like-btn_active');
@@ -44,14 +40,14 @@ liker.forEach(function(item) {
         if (evt.target.classList.contains('element__like-btn_active')) {
             cardLikeDelete(cardId)
                 .then((res) => {
-                    console.log(res.likes.length)
+                    card.querySelector('.element__like_count').textContent = res.likes.length
                 })
                 .then(() => evt.target.classList.remove('element__like-btn_active'));
         } else {
             if (!evt.target.classList.contains('element__like-btn_active')) {
                 cardLike(cardId)
                     .then((res) => {
-                        console.log(res.likes.length)
+                        card.querySelector('.element__like_count').textContent = res.likes.length
                     })
                     .then(() => evt.target.classList.add('element__like-btn_active'));
             }
@@ -69,10 +65,8 @@ liker.forEach(function(item) {
         openPopup(imagePopup);
     });
 console.log(userId.id);
-console.log(liker.forEach(function(item) {
-    console.log(item._id)
-}))
     console.log(liker.length);
+    console.log(card.querySelector('.element__like_count').textContent)
     return card;
 }
 
