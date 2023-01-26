@@ -12,6 +12,8 @@ export function closePopup(popup) {
   body.removeEventListener('keydown', esc);
 }
 
+//смена текста кнопки в попапах на 'Сохранение...' пока идет загрузка
+
 export function renderLoading(isLoading) {
   if (isLoading) {
     buttonLoading.textContent = 'Сохранение...';
