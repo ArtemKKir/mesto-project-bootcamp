@@ -1,22 +1,12 @@
 import './pages/index.css';
 import { enableValidation } from './components/validate.js';
 import { openPopup, closePopup } from './utils/utils.js';
-import { buttonLoading, avePopup, aveFormInput, aveImage, avePopupClose, aveForm, buttonOpenAvePopup, openPopupButtonElement, buttonClosePopupImage, closePopupButton, placePopupOpen, placeForm, placePopupClose, body, cardForm, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job, profilePopup, imagePopup } from './utils/constants.js'
+import { button, avePopup, aveFormInput, aveImage, avePopupClose, aveForm, buttonOpenAvePopup, openPopupButtonElement, buttonClosePopupImage, closePopupButton, placePopupOpen, placeForm, placePopupClose, body, cardForm, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job, profilePopup, imagePopup } from './utils/constants.js'
 import { getInitialCards, getUser, newCard, editUser, avatarChange } from './components/api.js';
 import { initialCards } from './components/data.js';
 
 getUser();
 
-const renderProfile = () => {
-
-}
-
-function renderLoading(isLoading) {
-    if (isLoading) {
-        buttonLoading.textContent = 'Сохранение...';
-        // error.textContent = '';
-    }
-}
 buttonOpenAvePopup.addEventListener('click', function () {
     openPopup(avePopup);
     aveForm.reset();
@@ -25,6 +15,14 @@ buttonOpenAvePopup.addEventListener('click', function () {
 avePopupClose.addEventListener('click', function () {
     closePopup(avePopup);
 })
+
+placePopupClose.addEventListener('click', function () {
+    closePopup(placeForm);
+})
+
+buttonClosePopupImage.addEventListener('click', function () {
+    closePopup(imagePopup);
+});
 
 export const avaChange = (evt) => {
     // evt.preventDefault();
@@ -42,13 +40,6 @@ placePopupOpen.addEventListener('click', function () {
     cardForm.reset();
 })
 
-placePopupClose.addEventListener('click', function () {
-    closePopup(placeForm);
-})
-
-buttonClosePopupImage.addEventListener('click', function () {
-    closePopup(imagePopup);
-});
 
 cardForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -86,11 +77,6 @@ form.addEventListener('submit', function (e) {
     editUser();
 });
 
-function esc(evt) {
-    if (evt.keyCode === 27) {
-        closePopup(document.querySelector('.popup_opened'));
-    }
-}
 
 body.addEventListener('click', function (evt) {
     if (evt.target.classList.contains('popup_opened')) {
@@ -106,5 +92,3 @@ enableValidation({
     inputErrorClass: 'form__item_error',
     errorClass: 'form__error'
 });
-
-export { esc }

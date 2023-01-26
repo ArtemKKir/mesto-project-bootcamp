@@ -1,8 +1,7 @@
 import { config, userId, template, imagePopup, imagePopupImage, imagePopupCaption, elements, newPlaceName, newPlaceUrl, nameInput, jobInput, name, job, aveImage, aveFormInput } from "../utils/constants";
-import { openPopup, renderLoading } from "../utils/utils.js";
+import { openPopup, renderLoading, renderLoadingCard, renderLoadingProfile } from "../utils/utils.js";
 import { handleFormSubmit, avaChange } from "../index.js";
 
-let someP = '';
 
 export const getResponse = (res) => {
     if (res.ok) {
@@ -10,6 +9,8 @@ export const getResponse = (res) => {
     }
     return Promise.reject(`Ошибка ${res.status}`);
 };
+
+////перенести функционал рендера карточек из апи в card.js 
 
 const createCard = (res) => {
     const card = template.cloneNode(true);
@@ -30,36 +31,36 @@ const createCard = (res) => {
     card.querySelector('.element__dlt-btn').addEventListener('click', function () {
         deleteCard(cardId)
             .then(() => card.remove())
+            .catch((err) => {
+                console.log(err);
+            });
     });
 
+    // этот цикл должен проверять есть ли у карточек мой лайк, если есть то лайк активен
     for (let i = liker.length - 1; i >= 0; i--) {
         if (liker[i] !== userId.id) {
             likeButton.classList.add('element__like-btn_active');
         }
     }
     //    добавить событию слушателя лайка отображение изменения количества лайков
+    //      количество лайков нужно подтянуть из ответа сервера
 
     card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
         if (evt.target.classList.contains('element__like-btn_active')) {
-            evt.target.classList.remove('element__like-btn_active');
-            cardLikeDelete(cardId);
-
-            
-            // getLikes(cardId);
-
-            // .then((res) => {                
+            cardLikeDelete(cardId)
+            // .then((res) => {
             //     console.log(res.likes.length)
             // })
+            .then(() => evt.target.classList.remove('element__like-btn_active'));
+
+            
         } else {
-            if (!evt.target.classList.add('element__like-btn_active')) {                
-                cardLike(cardId);
-
-
-                // getLikes(cardId);
-
+            if (!evt.target.classList.contains('element__like-btn_active')) {                
+                cardLike(cardId)
                 // .then((res) => {
                 //     console.log(res.likes.length)
                 // })
+                .then(() => evt.target.classList.add('element__like-btn_active'));
 
             }
         }
@@ -77,6 +78,7 @@ const createCard = (res) => {
     });
     console.log(cardId);
     console.log(liker.length);
+    console.log(ownerId);
     return card;
 }
 
@@ -116,7 +118,7 @@ export const getUser = () => {
 };
 
 export const editUser = (name, job) => {
-    renderLoading(true);
+    renderLoadingProfile(true);
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'PATCH',
         headers: config.headers,
@@ -133,7 +135,7 @@ export const editUser = (name, job) => {
             console.log(err);
         })
         .finally((res) => {
-            renderLoading(false);
+            renderLoadingProfile(false);
         })
 };
 
@@ -146,9 +148,7 @@ export const avatarChange = (avatar) => {
             avatar: aveFormInput.value
         })
     })
-        .then((res) => {
-            if (!res.ok) return Promise.reject(`Ошибка ${res.status}`);
-        })
+        .then(getResponse)
         .then((res) => {
             avaChange(res);
         })
@@ -160,7 +160,7 @@ export const avatarChange = (avatar) => {
         })
 };
 export const newCard = (name, link) => {
-    renderLoading(true);
+    renderLoadingCard(true);
     return fetch(`${config.baseUrl}/cards`, {
         method: 'POST',
         headers: config.headers,
@@ -177,7 +177,7 @@ export const newCard = (name, link) => {
             console.log(err);
         })
         .finally((res) => {
-            renderLoading(false);
+            renderLoadingCard(false);
         })
 }
 
@@ -205,10 +205,6 @@ export const cardLike = (_id) => {
         })
     })
         .then(getResponse)
-        .then((res) => {
-            someP = res.likes.length //тут получаем обновленное количество лайков
-            console.log(someP)
-        })
         .catch((err) => {
             console.log(err);
         });
@@ -223,9 +219,6 @@ export const cardLikeDelete = (_id) => {
         })
     })
         .then(getResponse)
-        .then((res) => {
-            console.log(res.likes.length) //тут получаем обновленное количество лайков
-        })
         .catch((err) => {
             console.log(err);
         });

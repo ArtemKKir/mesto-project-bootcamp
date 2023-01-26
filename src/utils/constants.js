@@ -15,7 +15,9 @@ export const avePopup = document.querySelector('.ave-popup');
 export const aveForm = document.querySelector('.form_ave');
 export const aveFormInput = document.querySelector('.input-url_ave');
 export const aveImage = document.querySelector('.profile__image');
-export const buttonLoading = document.querySelector('.form__submit-btn');
+export const buttonLoading = document.querySelector('.form__submit-btn_ave');
+export const buttonLoadingCard = document.querySelector('.form__submit-btn_place');
+export const buttonLoadingProfile = document.querySelector('.form__submit-btn_profile');
 
 const openPopupButtonElement = document.querySelector('.profile__edit-btn');
 const closePopupButton = document.querySelector('.popup__close-btn_profile');

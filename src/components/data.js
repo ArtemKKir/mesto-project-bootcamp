@@ -1,3 +1,4 @@
+// тут изначально находился локальный массив из которого рендерились катрочки
 import { getInitialCards } from "./api.js"
 export const initialCards = getInitialCards();/*[
     {

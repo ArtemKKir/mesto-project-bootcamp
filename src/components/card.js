@@ -1,3 +1,5 @@
+// тут изначально рендерились карточки до подключения функционала работы с сервером
+
 /*import { template, imagePopup, imagePopupImage, imagePopupCaption } from "../utils/constants.js";
 import { initialCards } from "./data.js";
 import { openPopup } from "../utils/utils.js";
