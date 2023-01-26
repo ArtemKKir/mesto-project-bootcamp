@@ -30,8 +30,16 @@ export const createCard = (res) => {
             });
     });
 
+    // liker.forEach(function() {
+    //     if liker.
+    // })
+
+// console.log(liker.forEach(function(object) {
+//     object + '!!!!';
+// }));
+
     for (let i = liker.length - 1; i >= 0; i--) {
-        if (liker[i] !== userId.id) {
+        if (liker.some !== userId.id) {
             likeButton.classList.add('element__like-btn_active');
         }
     }
@@ -63,9 +71,8 @@ export const createCard = (res) => {
         imagePopupCaption.textContent = res.name;
         openPopup(imagePopup);
     });
-    console.log(cardId);
+    console.log(userId);
     console.log(liker.length);
-    console.log(ownerId);
     return card;
 }
 
