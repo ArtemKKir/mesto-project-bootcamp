@@ -1,11 +1,11 @@
 import './pages/index.css';
 import { enableValidation } from './components/validate.js';
-import { openPopup, closePopup } from './utils/utils.js';
-import { button, avePopup, aveFormInput, aveImage, avePopupClose, aveForm, buttonOpenAvePopup, openPopupButtonElement, buttonClosePopupImage, closePopupButton, placePopupOpen, placeForm, placePopupClose, body, cardForm, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job, profilePopup, imagePopup } from './utils/constants.js'
-import { getInitialCards, getUser, newCard, editUser, avatarChange } from './components/api.js';
+import { openPopup, closePopup, renderLoading, renderLoadingCard, renderLoadingProfile } from './utils/utils.js';
+import { button, avePopup, aveFormInput, aveImage, avePopupClose, aveForm, buttonOpenAvePopup, openPopupButtonElement, buttonClosePopupImage, closePopupButton, placePopupOpen, placeForm, placePopupClose, body, cardForm, newPlaceUrl, newPlaceName, form, nameInput, jobInput, name, job, profilePopup, imagePopup, template, imagePopupImage, imagePopupCaption, elements } from './utils/constants.js'
+import { getInitialCards, newCard, editUser, avatarChange } from './components/api.js';
 import { initialCards } from './components/data.js';
+import { renderCard } from './components/card.js';
 
-getUser();
 
 buttonOpenAvePopup.addEventListener('click', function () {
     openPopup(avePopup);
@@ -32,7 +32,17 @@ export const avaChange = (evt) => {
 
 aveForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    avatarChange();
+    renderLoading(true);
+    avatarChange()
+        .then((res) => {
+            avaChange(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally((res) => {
+            renderLoading(false);
+        })
 });
 
 placePopupOpen.addEventListener('click', function () {
@@ -40,13 +50,22 @@ placePopupOpen.addEventListener('click', function () {
     cardForm.reset();
 })
 
-
 cardForm.addEventListener('submit', function (e) {
     e.preventDefault();
+    renderLoadingCard(true);
     const name = newPlaceName.value;
     const link = newPlaceUrl.value;
-    newCard({ name, link });
-    closePopup(placeForm);
+    newCard({ name, link })
+        .then((res) => {
+            renderCard(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally((res) => {
+            renderLoadingCard(false);
+        })
+    closePopup(placeForm)
 });
 
 openPopupButtonElement.addEventListener('click', function () {
@@ -65,18 +84,20 @@ export const handleFormSubmit = () => {
     closePopup(profilePopup);
 }
 
-/*function handleFormSubmit(evt) {
-    evt.preventDefault();
-    name.textContent = nameInput.value;
-    job.textContent = jobInput.value;
-    closePopup(profilePopup);
-}*/
-
 form.addEventListener('submit', function (e) {
     e.preventDefault;
-    editUser();
+    renderLoadingProfile(true);
+    editUser()
+        .then((res) => {
+            handleFormSubmit(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally((res) => {
+            renderLoadingProfile(false);
+        })
 });
-
 
 body.addEventListener('click', function (evt) {
     if (evt.target.classList.contains('popup_opened')) {

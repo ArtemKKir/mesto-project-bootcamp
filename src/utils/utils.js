@@ -13,19 +13,14 @@ export function closePopup(popup) {
 
 function esc(evt) {
   if (evt.key === "Escape") {
-      closePopup(document.querySelector('.popup_opened'));
+    closePopup(document.querySelector('.popup_opened'));
   }
 }
-
-
-
-
-//смена текста кнопки в попапах на 'Сохранение...' пока идет загрузка
 
 export function renderLoading(isLoading) {
   if (isLoading) {
     buttonLoading.textContent = 'Сохранение...';
-    } else {
+  } else {
     buttonLoading.textContent = 'Сохранить';
   }
 }
@@ -33,7 +28,7 @@ export function renderLoading(isLoading) {
 export function renderLoadingProfile(isLoading) {
   if (isLoading) {
     buttonLoadingProfile.textContent = 'Сохранение...';
-    } else {
+  } else {
     buttonLoadingProfile.textContent = 'Сохранить';
   }
 }
@@ -41,7 +36,7 @@ export function renderLoadingProfile(isLoading) {
 export function renderLoadingCard(isLoading) {
   if (isLoading) {
     buttonLoadingCard.textContent = 'Сохранение...';
-    } else {
+  } else {
     buttonLoadingCard.textContent = 'Создать';
   }
 }
