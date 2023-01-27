@@ -30,11 +30,11 @@ export const createCard = (res) => {
             });
     });
 
-liker.forEach(function(item) {
-    if(item._id === userId.id) {
-        likeButton.classList.add('element__like-btn_active');
-    };
-});
+    liker.forEach(function (item) {
+        if (item._id === userId.id) {
+            likeButton.classList.add('element__like-btn_active');
+        };
+    });
 
     card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
         if (evt.target.classList.contains('element__like-btn_active')) {
@@ -42,14 +42,20 @@ liker.forEach(function(item) {
                 .then((res) => {
                     card.querySelector('.element__like_count').textContent = res.likes.length
                 })
-                .then(() => evt.target.classList.remove('element__like-btn_active'));
+                .then(() => evt.target.classList.remove('element__like-btn_active'))
+                .catch((err) => {
+                    console.log(err);
+                });
         } else {
             if (!evt.target.classList.contains('element__like-btn_active')) {
                 cardLike(cardId)
                     .then((res) => {
                         card.querySelector('.element__like_count').textContent = res.likes.length
                     })
-                    .then(() => evt.target.classList.add('element__like-btn_active'));
+                    .then(() => evt.target.classList.add('element__like-btn_active'))
+                    .catch((err) => {
+                        console.log(err);
+                    });
             }
         }
     }
@@ -64,7 +70,7 @@ liker.forEach(function(item) {
         imagePopupCaption.textContent = res.name;
         openPopup(imagePopup);
     });
-console.log(userId.id);
+    console.log(userId.id);
     console.log(liker.length);
     console.log(card.querySelector('.element__like_count').textContent)
     return card;

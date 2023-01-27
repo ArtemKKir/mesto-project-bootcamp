@@ -57,15 +57,15 @@ cardForm.addEventListener('submit', function (e) {
     const link = newPlaceUrl.value;
     newCard({ name, link })
         .then((res) => {
-            renderCard(res);
+            renderCard(res)
         })
+        .then(() => closePopup(placeForm))
         .catch((err) => {
             console.log(err);
         })
         .finally((res) => {
             renderLoadingCard(false);
         })
-    closePopup(placeForm)
 });
 
 openPopupButtonElement.addEventListener('click', function () {

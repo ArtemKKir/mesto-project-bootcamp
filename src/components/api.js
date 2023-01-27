@@ -78,9 +78,6 @@ export const cardLike = (_id) => {
         })
     })
         .then(getResponse)
-        .catch((err) => {
-            console.log(err);
-        });
 }
 
 export const cardLikeDelete = (_id) => {
@@ -92,20 +89,4 @@ export const cardLikeDelete = (_id) => {
         })
     })
         .then(getResponse)
-        .catch((err) => {
-            console.log(err);
-        });
-}
-
-export const getLikes = (_id) => {    //а может тут его надо получать
-    return fetch(`${config.baseUrl}/cards/${_id}`, {
-        headers: config.headers,
-    })
-        .then(getResponse)
-        .then((res) => {
-            console.log(res.likes.length)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
 }
